@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>noscreen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+</head>
+<body class="interactive">
+  <div class="app">
+    <!-- Drag handle (interactive mode only) -->
+    <div class="drag-handle"><div class="drag-pill"></div></div>
+
+    <!-- Connect screen — shown on launch -->
+    <div class="connect-screen" id="connect-screen">
+      <div class="connect-inner">
+        <div class="connect-logo">noscreen</div>
+        <p class="connect-subtitle">Invisible AI Teleprompter</p>
+        <div class="connect-input-wrap">
+          <input
+            type="text"
+            id="session-input"
+            class="connect-input"
+            placeholder="Paste nojumper link or session ID…"
+            spellcheck="false"
+            autocomplete="off"
+          />
+          <button id="connect-btn" class="connect-btn">Connect</button>
+        </div>
+        <p class="connect-hint">e.g. https://nojumper.wtf/view/abc123 or just abc123</p>
+        <p class="connect-error" id="connect-error"></p>
+      </div>
+    </div>
+
+    <!-- Transcript (hidden until connected) -->
+    <div class="transcript-scroll" id="transcript-scroll" style="display:none;">
+      <div class="transcript-segments" id="transcript-segments"></div>
+    </div>
+
+    <!-- Bottom bar (hidden until connected) -->
+    <div class="bottom-bar" id="bottom-bar" style="display:none;">
+      <div class="bar-left">
+        <span class="shield-badge">Always Invisible</span>
+        <span class="mode-label" id="mode-label">Connecting</span>
+      </div>
+      <div class="bar-center">
+        <div class="speed-group" id="speed-group">
+          <span class="speed-btn" data-speed="1">1</span>
+          <span class="speed-btn" data-speed="2">2</span>
+          <span class="speed-btn" data-speed="3">3</span>
+          <span class="speed-btn active" data-speed="4">4</span>
+          <span class="speed-btn" data-speed="5">5</span>
+        </div>
+      </div>
+      <div class="bar-right">
+        <span class="bar-tag" id="scroll-tag">Scroll ON</span>
+        <span class="bar-tag" id="opacity-tag">100%</span>
+      </div>
+    </div>
+
+    <!-- Shortcuts (hidden until connected) -->
+    <div class="shortcuts-row" id="shortcuts-row" style="display:none;">
+      <kbd>⌘⇧H</kbd>Hide <kbd>⌘⇧P</kbd>Play <kbd>⌘⇧L</kbd>Grab <kbd>⌘⇧S</kbd>Scroll <kbd>⌘⇧1-5</kbd>Speed <kbd>⌘⇧-/=</kbd>Fade <kbd>⌘⇧↑↓←→</kbd>Move
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
